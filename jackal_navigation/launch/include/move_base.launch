@@ -1,4 +1,13 @@
 <launch>
+
+  <!-- Run the map server for move_base -->
+  <arg name="map_file_added_obstacles"/>
+  <arg name="allow_unknown" default="false" />
+
+  <node name="map_server_added_obstacles" pkg="map_server" type="map_server" args="$(arg map_file_added_obstacles)">
+    <remap from="map" to="map_added_obstacles" />
+    <remap from="static_map" to="static_map_added_obstacles" />
+  </node>
  
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
@@ -11,10 +20,19 @@
     <rosparam file="$(find jackal_navigation)/params/base_local_planner_params.yaml" command="load" />
     <rosparam file="$(find jackal_navigation)/params/move_base_params.yaml" command="load" />
     
-    <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
+    <!--<param name="base_global_planner" type="string" value="navfn/NavfnROS" />-->
     <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
     
     <remap from="odom" to="odometry/filtered" />
+
+    <remap from="map" to="map_added_obstacles" />
+
+    <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+    <param name="GlobalPlanner/allow_unknown" value="$(arg allow_unknown)" />
+
+    <param name="GlobalPlanner/lethal_cost" value="253" />
+    <param name="GlobalPlanner/neutral_cost" value="66" />
+    <param name="GlobalPlanner/cost_factor" value="0.55" />
   </node>
 
 </launch>
