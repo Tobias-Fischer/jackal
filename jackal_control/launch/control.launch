@@ -1,10 +1,19 @@
 <launch>
-  <arg name="use_robot_pose_ekf" default="true" />
+  <arg name="use_robot_pose_ekf" default="false" />
   <rosparam command="load" file="$(find jackal_control)/config/control.yaml" />
 
   <group if="$(optenv JACKAL_CONTROL_EXTRAS 0)" >
     <rosparam command="load" file="$(env JACKAL_CONTROL_EXTRAS_PATH)" />
   </group>
+
+  <node pkg="imu_processors" type="imu_bias_remover" name="imu_bias_remover">
+    <param name="use_odom" value="true"/>
+
+    <remap from="odom" to="jackal_velocity_controller/odom" />
+    <remap from="imu" to="imu/data" />
+    <remap from="imu_biased" to="imu/bias_removed" />
+    <remap from="bias" to="imu/bias" />
+  </node>
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="jackal_joint_publisher jackal_velocity_controller" />
@@ -22,9 +31,10 @@
     <param name="vo_used" value="false"/>
     <param name="debug" value="false"/>
     <param name="self_diagnose" value="false"/>
+    <param name="base_footprint_frame" value="base_link" />
 
     <remap from="odom" to="jackal_velocity_controller/odom" />
-    <remap from="imu_data" to="imu/data" />
+    <remap from="imu_data" to="imu/bias_removed" />
     <remap from="robot_pose_ekf/odom_combined" to="odometry/filtered" />
   </node>
 
