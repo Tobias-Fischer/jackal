@@ -22,10 +22,10 @@ TebLocalPlannerROS:
  max_vel_x: 0.6
  max_vel_x_backwards: 0.2
  max_vel_y: 0.0
- max_vel_theta: 1.1
+ max_vel_theta: 1.0
  acc_lim_x: 0.6
  acc_lim_theta: 1.0
- min_turning_radius: 0.375
+ min_turning_radius: 1.2
 
  footprint_model:
    type: "point"
