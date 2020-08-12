@@ -15,7 +15,7 @@
   </node>
 
   <!-- TODO: Check if that works as intended -->
-  <node pkg="imu_processors" type="imu_transformer" name="imu_transformer_um7">
+  <node pkg="imu_transformer" type="imu_transformer_node" name="imu_transformer_um7">
     <remap from="imu_in" to="imu_um7" />
     <remap from="imu_out" to="imu_um7_corrected" />
     <param name="target_frame" value="base_link"/>
