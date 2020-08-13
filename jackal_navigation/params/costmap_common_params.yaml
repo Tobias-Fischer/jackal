@@ -19,10 +19,11 @@ plugins:
 - {name: map_layer,          type: "costmap_2d::StaticLayer"}
 
 obstacles_layer:
+  track_unknown_space: true
   observation_sources: front_scan rear_scan velodyne_scan
-  front_scan: {sensor_frame: front_laser, data_type: LaserScan, topic: front/scan, marking: true, clearing: true, min_obstacle_height: -2.0, max_obstacle_height: 2.0, obstacle_range: 2.5, raytrace_range: 3.0, track_unknown_space: true}
-  rear_scan: {sensor_frame: rear_laser, data_type: LaserScan, topic: rear/scan, marking: true, clearing: true, min_obstacle_height: -2.0, max_obstacle_height: 2.0, obstacle_range: 2.5, raytrace_range: 3.0, track_unknown_space: true}
-  velodyne_scan: {sensor_frame: velodyne, data_type: LaserScan, topic: scan, marking: true, clearing: true, min_obstacle_height: -2.0, max_obstacle_height: 2.0, obstacle_range: 2.5, raytrace_range: 3.0, track_unknown_space: true}
+  front_scan: {sensor_frame: front_laser, data_type: LaserScan, topic: front/scan, marking: true, clearing: true, min_obstacle_height: -2.0, max_obstacle_height: 2.0, obstacle_range: 2.5, raytrace_range: 3.0}
+  rear_scan: {sensor_frame: rear_laser, data_type: LaserScan, topic: rear/scan, marking: true, clearing: true, min_obstacle_height: -2.0, max_obstacle_height: 2.0, obstacle_range: 2.5, raytrace_range: 3.0}
+  velodyne_scan: {sensor_frame: velodyne, data_type: LaserScan, topic: scan, marking: true, clearing: true, min_obstacle_height: -2.0, max_obstacle_height: 2.0, obstacle_range: 2.5, raytrace_range: 3.0}
 
 inflater_layer:
  inflation_radius: 1.75
