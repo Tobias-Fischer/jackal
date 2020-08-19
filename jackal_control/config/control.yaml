@@ -19,8 +19,8 @@ jackal_velocity_controller:
   enable_odom_tf: false
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 1.5 # on Jackal this should be 1.5 for some reason, 1.0 gives wrong rotations!
-  wheel_radius_multiplier    : 0.95 # default: 1.0
+  wheel_separation_multiplier: 1.57 # on Jackal this should be 1.5 for some reason, 1.0 gives wrong rotations!
+  wheel_radius_multiplier    : 0.97 # default: 1.0
 
   # Velocity and acceleration limits
   # Whenever a min_* is unspecified, default to -max_*
