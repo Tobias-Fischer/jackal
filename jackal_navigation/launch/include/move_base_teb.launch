@@ -4,10 +4,12 @@
   <arg name="map_file_added_obstacles" />
   <arg name="allow_unknown" default="false" />
 
-  <node name="map_server_added_obstacles" pkg="map_server" type="map_server" args="$(arg map_file_added_obstacles)">
+  <node name="map_server_added_obstacles" pkg="map_server" type="map_server" args="$(arg map_file_added_obstacles)" if="$(eval arg('map_file_added_obstacles')!=false)">
     <remap from="map" to="map_added_obstacles" />
     <remap from="static_map" to="static_map_added_obstacles" />
   </node>
+
+  <node name="map_server_relay" pkg="topic_tools" type="relay" args="map map_added_obstacles" if="$(eval arg('map_file_added_obstacles')==false)" />
  
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
