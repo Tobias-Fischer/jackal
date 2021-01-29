@@ -16,3 +16,8 @@ Changes:
 - More sensible acceleration values
 - Use front+back+velodyne laser scans as observation sources for obstacle avoidance
 - Increase inflation layer so robot stops hugging walls when turning
+
+TODO: 
+- Setup GPS RTK
+- Integrate GPS into slam_toolbox / odometry / localisation nodes
+- Use ROS provided packages instead of manually compiling them in catkin_ws once they release those packages
